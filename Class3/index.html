@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+<!--This is the second iteration of my personal resume which is done according to the instructions for Homework 2-->
 <html>
   <head>
 	<title>Matt Loehrer</title>
 	<base href="http://localhost" target="_blank" />
-	<link rel="stylesheet" type="text/css" href="http://localhost/CSS/themes.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost/css/themes.css">
+	<link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
 	<meta charset="utf-8">
 	<meta name="description" content="My Web Development Resume">
 	<meta name="keywords" content="resume,test">
@@ -11,9 +13,12 @@
 	<meta name="viewport"
 					content="width=device-width, initial-scale=1.0">
   </head>
+
   <body>
-  	<div style="float: right;">
-  		<img src="/images/mattNorm.jpg" alt="Matt and his co-worker" style="height:200px;">
+  	<div id="mainPhoto">
+  		<div>
+  			<img src="/images/headshot.jpg" alt="Matthew Loehrer" style="height:350px;">
+  		</div>
   	</div>
   	<div>
   		<h1>Matt Loehrer</h1>
@@ -96,7 +101,7 @@
 	</div>
 	<p>If you would like <em>me</em> to contact <em>you</em>, please send me your details below.</p>
 	<div style="border: 1px solid Indigo; width: 100%; margin: .1in .1in .1in .1in">
-			<form action="http://localhost/echo.php" method="post">
+			<form action="http://localhost/bin/echo.php" method="post">
 				<table>
 					<tr><td>Name: 		</td> <td><input type="text" name="name-field"></td></tr>
 					<tr><td>Email Address:	</td> <td><input type="emailAddress" name="emailAddress-field"></td></tr>

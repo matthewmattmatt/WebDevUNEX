@@ -1,0 +1,17 @@
+body {
+	font-family: 'Mukta', sans-serif;
+	margin-top: 50px;
+	margin-right: 100px;
+	margin-bottom: 100px;
+	margin-left: 100px;
+}
+
+h1 {
+	margin-left: -50px;
+	font-weight: bold;
+}
+
+h2 {
+	margin-left: -25px;
+	font-weight: bold;
+}
