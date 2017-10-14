@@ -36,10 +36,7 @@ a:visited {
 
 .mainPhoto {
 	width: 100%;
-}
-
-.myPhoto {
-	size: 50%;
+	border: 3pt solid black;
 }
 
 .byLine {
