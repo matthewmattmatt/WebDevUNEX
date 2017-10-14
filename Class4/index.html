@@ -2,7 +2,81 @@
 <!--notes from Class 4: focus on JavaScript-->
 <html>
 <head>
-	<title></title>
+	<title>Class 4</title>
+	<link rel="stylesheet" type="text/css" href="/css/themes.css">
+	<script>
+		var myName = "Matt"
+		alert("Hello" + " " + myName);
+		console.log("hello");
+
+		var qqq = 10;
+
+//IF STATEMENTS
+		if ( qqq <= 10) {
+			console.log ("it's <= 10");
+		}
+		else {
+			console.log ("it's > 10");
+		}
+
+//remember that ! is false/not the var " ex: !var
+
+//WHILE STATEMENTS
+		const maxCount = 10;
+		var i = 0;
+		while (i < maxCount) {
+			console.log(i);
+			++i;   // i-=2 is also possible
+		}
+
+//FOR STATEMENTS
+		for (var i = 0; i < maxCount; ++i) {
+			console.log(i);
+		}
+//OTHER DATA STRUCTURES
+//ARRAY
+
+var strings = ["a", "b", "c"];
+strings[0] = "A" //this is the location of the first in the array and "A" is being pushed in to "a"
+strings[3] = "D" //adds "d" to the array
+
+for (current in strings) {
+	console.log(current); //current is counting the characterd in strings, it's printing the # indexes
+}
+
+for (current of strings) {
+	console.log(current); //current is listing the contents of the array
+}
+
+//WORKING WITH OBJECTS (JSON)
+
+var lineItem = {
+	'description' : "My Product",
+	'price': 1.23,
+	'quantity': 5,
+	'past cost': [10.1,20.2], //arrays can have arrays
+};
+
+console.log(lineItem.description); //var.description is bringing back the value of the variable. It's strictly asking for that item.
+console.log(lineItem["description"]); //this is more flexible since it's using array notation
+
+var order = [
+	{description: "Item1", cost: 1.2},
+	{description: "Item2", cost: 2.3}
+]
+
+var description = for (current of order)
+
+for (current of description) {
+	console.log();
+	console.log();
+}
+
+//HW make an order with 10 items, print those items "neatly" as a webpage. At the bottom, add total cost
+
+
+
+	</script>
 </head>
 <body>
 	<h1>Matt Loehrer</h1>
