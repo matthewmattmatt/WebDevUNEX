@@ -1,7 +1,7 @@
 body {
 	font-family: 'Mukta', sans-serif;
 	margin-top: 50px;
-	margin-right: 75px;
+	margin-right: 100px;
 	margin-bottom: 100px;
 	margin-left: 100px;
 	color: rgb(8,7,58);
@@ -34,9 +34,48 @@ a:visited {
 	border: dotted;
 }
 
+div.table {
+	border: 1pt solid rgb(8,7,58);
+	width: 100%;
+	vertical-align: center;
+}
+
+div.tableLine {
+	border-bottom: 1pt solid rgb(8,7,58);
+	width: 100%;
+}
+
+div.tableHead {
+	height: 3em;
+	width: 23%;
+	text-align: left;
+	display: inline-block;
+	font-size: 15pt;
+	padding-left: 1em;
+	padding-top: 1em;
+}
+
+div.tableRow {
+	width: 23%;
+	height: 3em;
+	display: inline-block;
+	text-align: center;
+	padding-top: 1em;
+}
+
+ /*
 .mainPhoto {
+	height: 20em;
 	width: 100%;
 	border: 3pt solid black;
+	text-align: center;
+}
+*/
+
+.myPhoto {
+	height: 20em;
+	float: right;
+	position: relative;
 }
 
 .byLine {
