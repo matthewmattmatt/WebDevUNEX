@@ -34,33 +34,36 @@ a:visited {
 	border: dotted;
 }
 
-div.table {
-	border: 1pt solid rgb(8,7,58);
-	width: 100%;
-	vertical-align: center;
-}
-
 div.tableLine {
 	border-bottom: 1pt solid rgb(8,7,58);
 	width: 100%;
+	padding-bottom: 1.5em;
 }
 
-div.tableHead {
-	height: 3em;
-	width: 23%;
+div.tableHeadEven {
 	text-align: left;
 	display: inline-block;
 	font-size: 15pt;
 	padding-left: 1em;
-	padding-top: 1em;
+	background-color: rgba(8,7,58,.3);
 }
 
-div.tableRow {
-	width: 23%;
-	height: 3em;
+div.tableHeadOdd {
+	text-align: left;
 	display: inline-block;
-	text-align: center;
-	padding-top: 1em;
+	font-size: 15pt;
+	padding-left: 1em;
+}
+
+div.tableRowEven {
+	display: inline-block;
+	vertical-align: text-top;
+	background-color: rgba(8,7,58,.3);
+}
+
+div.tableRowOdd {
+	display: inline-block;
+	vertical-align: text-top;
 }
 
  /*
@@ -75,7 +78,6 @@ div.tableRow {
 .myPhoto {
 	height: 20em;
 	float: right;
-	position: relative;
 }
 
 .byLine {
