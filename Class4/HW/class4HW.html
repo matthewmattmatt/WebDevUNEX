@@ -4,24 +4,95 @@
 	<title>My Shopping Cart</title>
 	<script>
 
-		window.onload = function () {
+		window.onload = function cart () {
 
 			var currentorder = [
-				{itemname:"bananas", type:"fruit", price:3.50};
-				{itemname:"apples", type:"fruit", price:5.50};
-				{itemname:"potatoes", type:"vegetable", price:2.50};
-				]
+				{itemname:"bananas ", type:"fruit ", price:3.50},
+				{itemname:"apples ", type:"fruit", price:1.00},
+				{itemname:"pumpkins ", type:"vegetable", price:5.00}
+				];
+						
+			document.getElementById("myCart0item").innerHTML = currentorder[0].itemname;
+			document.getElementById("myCart1item").innerHTML = currentorder[1].itemname;
+			document.getElementById("myCart2item").innerHTML = currentorder[2].itemname;
 
-			document.getElementById("myCart").innerHTML = currentorder["itemname"];
+			document.getElementById("myCart0type").innerHTML = currentorder[0].type;
+			document.getElementById("myCart1type").innerHTML = currentorder[1].type;
+			document.getElementById("myCart2type").innerHTML = currentorder[2].type;
+
+			document.getElementById("myCart0price").innerHTML = currentorder[0].price;
+			document.getElementById("myCart1price").innerHTML = currentorder[1].price;
+			document.getElementById("myCart2price").innerHTML = currentorder[2].price;
+			
+			var totalPrice = currentorder[0].price + currentorder[1].price + currentorder[2].price;
+			document.getElementById("totalPrice").innerHTML = totalPrice;
 		}
-		
-
 
 	</script>
+	<style>
+
+		.lineitem {
+			display: inline-block;
+			margin-right: 15px;
+		}
+
+		.item {
+			color: blue;
+		}
+
+		.type {
+		}
+
+		.price {
+			font-weight: bold;
+			text-align: right;
+		}
+		.head {
+			font-family: cursive, serif;
+		}
+
+		.totalPrice {
+			font-weight: bold;
+			display: inline-block;
+		}
+
+		div.price::before {
+			content: "$ ";
+		}
+
+		div.totalPrice::before {
+			content: "$ ";
+		}
+
+
+
+	</style>
 </head>
 <body>
 
-	<div id="myCart"></div>
+	<div class="lineitem">
+		<div class="head">Item</div>
+		<div class="item" id="myCart0item"></div>
+		<div class="item" id="myCart1item"></div>
+		<div class="item" id="myCart2item"></div>
+	</div>
+
+	<div class="lineitem">
+		<div class="head">Type</div>
+		<div class="type" id="myCart0type"></div>
+		<div class="type" id="myCart1type"></div>
+		<div class="type" id="myCart2type"></div>
+	</div>
+	
+	<div class="lineitem">
+		<div class="head">Price</div>
+		<div class="price" id="myCart0price"></div>
+		<div class="price" id="myCart1price"></div>
+		<div class="price" id="myCart2price"></div>
+	</div>
+
+	<p>Total Amount Due:</p>
+	<div class="totalPrice" id="totalPrice"></div>
 
 </body>
 </html>
