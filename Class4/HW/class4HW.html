@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Shopping Cart</title>
+	<script>
+
+		window.onload = function () {
+
+			var currentorder = [
+				{itemname:"bananas", type:"fruit", price:3.50};
+				{itemname:"apples", type:"fruit", price:5.50};
+				{itemname:"potatoes", type:"vegetable", price:2.50};
+				]
+
+			document.getElementById("myCart").innerHTML = currentorder["itemname"];
+		}
+		
+
+
+	</script>
+</head>
+<body>
+
+	<div id="myCart"></div>
+
+</body>
+</html>
