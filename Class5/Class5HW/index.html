@@ -5,78 +5,67 @@
 	<title>My Shopping Cart</title>
 	<script>
 
-		window.onload = function orders () {
+		var customerOrder = [
+			{
+				itemname:"bananas",
+				type:"fruit",
+				qty: 1,
+				unitPrice:3.50
+			},
+			{
+				itemname:"apples",
+				type:"fruit",
+				qty: 3,
+				unitPrice:1.00
+			},
+			{
+				itemname:"pumpkins ",
+				type:"vegetable",
+				qty: 5,
+				unitPrice:5.00
+			},
+			{
+				itemname:"passionfruit",
+				type:"fruit",
+				qty: 7,
+				unitPrice:1.50
+			},
+		];
 
-			var customerOrder1 = [
-				{itemname:"bananas", type:"fruit", qty: 1, unitPrice:3.50},
-				{itemname:"apples", type:"fruit", qty: 3, unitPrice:1.00},
-				{itemname:"pumpkins ", type:"vegetable", qty: 5, unitPrice:5.00}
-				];
-
-			var customerOrder2 = [
-				{itemname:"passionfruit", type:"fruit", qty: 7, unitPrice:1.50},
-				{itemname:"grapfruit", type:"fruit", qty: 3, unitPrice:3.00},
-				{itemname:"squash", type:"vegetable", qty: 4, unitPrice:6.00}
-				{itemname:"tomatoes", type:"vegetable", qty: 2, unitPrice:7.50}
-				];
-						
-			document.getElementById("myCart0item").innerHTML = currentorder[0].itemname;
-			document.getElementById("myCart1item").innerHTML = currentorder[1].itemname;
-			document.getElementById("myCart2item").innerHTML = currentorder[2].itemname;
-
-			document.getElementById("myCart0type").innerHTML = currentorder[0].type;
-			document.getElementById("myCart1type").innerHTML = currentorder[1].type;
-			document.getElementById("myCart2type").innerHTML = currentorder[2].type;
-
-			document.getElementById("myCart0price").innerHTML = currentorder[0].price;
-			document.getElementById("myCart1price").innerHTML = currentorder[1].price;
-			document.getElementById("myCart2price").innerHTML = currentorder[2].price;
-			
-			var totalPrice = currentorder[0].price + currentorder[1].price + currentorder[2].price;
-			document.getElementById("totalPrice").innerHTML = totalPrice;
+		function createHTMLforInvoice (lineitem) {
+			return	  '<div>'
+			+ lineitem.itemname 
+			+ " " 
+			+ lineitem.type 
+			+ " " 
+			+ lineitem.qty
+			+ " "
+			+ lineitem.unitPrice
+			+ " "
+			+ (lineitem.unitPrice * lineitem.qty)
+			+ "</div>"
+			;
 		}
+
+		function displayInvoice() {
+			document.getElementById("invoice").innerHTML =
+			createHTMLforInvoice(customerOrder[0]);
+
+			var orderDisplay = "";
+			for( currentItem of order ) {
+					orderDisplay += createHTMLforInvoice( currentItem );
+			}
+		}
+
+		window.onload = displayInvoice;
 
 	</script>
-	<style>
-
-		.lineitem {
-			display: inline-block;
-			margin-right: 15px;
-		}
-
-		.item {
-			color: blue;
-		}
-
-		.type {
-		}
-
-		.price {
-			font-weight: bold;
-			text-align: right;
-		}
-		.head {
-			font-family: cursive, serif;
-		}
-
-		.totalPrice {
-			font-weight: bold;
-			display: inline-block;
-		}
-
-		div.price::before {
-			content: "$ ";
-		}
-
-		div.totalPrice::before {
-			content: "$ ";
-		}
-	</style>
+	<style></style>
 </head>
 <body>
 
 	<h1>Order Receipt</h1>
-	<div id="receipt"></div>
+	<div id="invoice"></div>
 
 	<h2>Total Amount Due: <div class="totalPrice" id="totalPrice"></div></h2>
 </body>
