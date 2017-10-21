@@ -1,90 +1,70 @@
 <!DOCTYPE html>
+<!--on the front end, testing is not ideal. The server should be used for testing. Data validation could be done on the front end but again, it's not best practice. HW: Add textinput field, change qty = change total, qty = 0 == not visable-->
 <html>
 <head>
 	<title>Class 5 Work</title>
-	<script>
+<style>
+.description {
+	border: 1px solid black;
+	display: inline;
+}
+</style>
+<script>
+	var lineItem = {
+		"description": "this is the thing",
+		"cost": 1.0,
+		"qty": 1
+	};
 
-		window.onload = function cart () {
-
-			var currentorder = [
-				{itemname:"bananas ", type:"fruit ", price:3.50},
-				{itemname:"apples ", type:"fruit", price:1.00},
-				{itemname:"pumpkins ", type:"vegetable", price:5.00}
-				];
-						
-			document.getElementById("myCart0item").innerHTML = currentorder[0].itemname;
-			document.getElementById("myCart1item").innerHTML = currentorder[1].itemname;
-			document.getElementById("myCart2item").innerHTML = currentorder[2].itemname;
-
-			document.getElementById("myCart0type").innerHTML = currentorder[0].type;
-			document.getElementById("myCart1type").innerHTML = currentorder[1].type;
-			document.getElementById("myCart2type").innerHTML = currentorder[2].type;
-
-			document.getElementById("myCart0price").innerHTML = currentorder[0].price;
-			document.getElementById("myCart1price").innerHTML = currentorder[1].price;
-			document.getElementById("myCart2price").innerHTML = currentorder[2].price;
-			
-			var totalPrice = currentorder[0].price + currentorder[1].price + currentorder[2].price;
-			document.getElementById("totalPrice").innerHTML = totalPrice;
+		function getHTMLForLineItem (lineItem) {
+			return "<div>"
+					+ '<div class="description">'
+					+ 	 lineItem.description
+					+ '</div>'
+					+ ' ' 
+					+ lineItem.cost 
+					+ ' ' 
+					+ lineItem.qty
+					+ "</div>"
+				;
 		}
 
-	</script>
-	<style>
+	window.onload = function () {
+		document.getElementById('the-order').innerHTML = 
+			getHTMLForLineItem (lineItem);
+	}
 
-		.lineitem {
-			display: inline-block;
-			margin-right: 15px;
-		}
+		/*notice the syntax on the functions, two ways of saying the same thing*/
+	
+	function change (amount) {
+		var bar = document.getElementById("myProgress");
+		bar.value += amount;
 
-		.item {
-			color: blue;
-		}
+	var display = document.getElementById("currentValue");
+	}
+		
+	/*var up = function () { change (amount);}*/
+	function up (amount) {change(amount)}
+	function down (amount) { change(-amount);}
 
-		.type {
-		}
-
-		.price {
-			font-weight: bold;
-			text-align: right;
-		}
-		.head {
-			font-family: cursive, serif;
-		}
-
-		.totalPrice {
-			font-weight: bold;
-			display: inline-block;
-		}
-
-		div.price::before {
-			content: "$ ";
-		}
-
-		div.totalPrice::before {
-			content: "$ ";
-		}
-	</style>
+</script>
 </head>
 <body>
-	<div class="lineitem">
-		<div class="head">Item</div>
-		<div class="item" id="myCart0item"></div>
-		<div class="item" id="myCart1item"></div>
-		<div class="item" id="myCart2item"></div>
-	</div>
-	<div class="lineitem">
-		<div class="head">Type</div>
-		<div class="type" id="myCart0type"></div>
-		<div class="type" id="myCart1type"></div>
-		<div class="type" id="myCart2type"></div>
-	</div>
-	<div class="lineitem">
-		<div class="head">Price</div>
-		<div class="price" id="myCart0price"></div>
-		<div class="price" id="myCart1price"></div>
-		<div class="price" id="myCart2price"></div>
-	</div>
-	<p>Total Amount Due:</p>
-	<div class="totalPrice" id="totalPrice"></div>
+	<h1>I'm Here</h1>
+
+	<form id="myforum" action="/echo.php" method="post">
+		<input type="hidden" name="myvalue" value="50"></input>
+
+		<h1>Current Value is <span id"currentValue">xxx</span></h1>
+
+
+		<progress id="myProgress" value="50" max="100"> </progress>
+		<br>
+		<button type="button" onclick="down(10)"> - </button> <!--there are other types of buttons that have different actions-->
+		<button type="button" onclick="up(10)"> + </button>
+	</form>
+
+	<div id="the-order"></div>
+
 </body>
 </html>
