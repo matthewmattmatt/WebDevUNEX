@@ -9,7 +9,7 @@
 			{
 				itemname:"bananas",
 				type:"fruit",
-				qty: 1,
+				qty: 2,
 				unitPrice:3.50
 			},
 			{
@@ -32,7 +32,6 @@
 			},
 		];
 
-		var total = 0.0;
 
 		function createHTMLforInvoice (lineitem) {
 			return	  '<div>'
@@ -47,8 +46,6 @@
 						+ (lineitem.unitPrice * lineitem.qty)
 					+ "</div>"
 					;
-			total += (lineitem.unitPrice * lineitem.qty);
-			document.getElementById("totalPrice").innerHTML = total;
 		}
 
 		function displayInvoice() {
@@ -76,6 +73,6 @@
 	<h1>Order Receipt</h1>
 	<div id="invoice"></div>
 
-	<h2>Total Amount Due: <div class="totalPrice" id="totalPrice"></div></h2>
+	<h2>Total Amount Due: <div class="Price" id="totalPrice"></div></h2>
 </body>
 </html>
