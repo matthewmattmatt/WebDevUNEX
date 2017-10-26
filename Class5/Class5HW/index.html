@@ -32,29 +32,38 @@
 			},
 		];
 
+		var total = 0.0;
+
 		function createHTMLforInvoice (lineitem) {
 			return	  '<div>'
-			+ lineitem.itemname 
-			+ " " 
-			+ lineitem.type 
-			+ " " 
-			+ lineitem.qty
-			+ " "
-			+ lineitem.unitPrice
-			+ " "
-			+ (lineitem.unitPrice * lineitem.qty)
-			+ "</div>"
-			;
+						+ lineitem.itemname 
+						+ " " 
+						+ lineitem.type 
+						+ " " 
+						+ lineitem.qty
+						+ " "
+						+ lineitem.unitPrice
+						+ " "
+						+ (lineitem.unitPrice * lineitem.qty)
+					+ "</div>"
+					;
+			total += (lineitem.unitPrice * lineitem.qty);
+			document.getElementById("totalPrice").innerHTML = total;
 		}
 
 		function displayInvoice() {
+
+			/*
 			document.getElementById("invoice").innerHTML =
 			createHTMLforInvoice(customerOrder[0]);
+			*/
 
 			var orderDisplay = "";
-			for( currentItem of order ) {
-					orderDisplay += createHTMLforInvoice( currentItem );
+			for (currentItem of customerOrder) {
+					orderDisplay += createHTMLforInvoice(currentItem);
 			}
+
+			document.getElementById("invoice").innerHTML = orderDisplay;
 		}
 
 		window.onload = displayInvoice;
