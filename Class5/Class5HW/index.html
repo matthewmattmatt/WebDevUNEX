@@ -4,7 +4,14 @@
 <head>
 	<title>My Shopping Cart</title>
 
-	<style></style>
+	<style>
+		.name {
+			color: red;
+			display: inline;
+			
+		}
+
+	</style>
 </head>
 <body>
 
@@ -43,7 +50,9 @@
 
 	function createHTMLforInvoice (lineitem) {
 		return	  '<div>'
+					+ '<div class="name">'
 					+ lineitem.itemname 
+					+ '</div>'
 					+ " " 
 					+ lineitem.type 
 					+ " " 
@@ -81,7 +90,7 @@
 	document.getElementById("invoice").innerHTML =
 	createHTMLforInvoice(customerOrder[0]);
 	*/
-	
+
 </script>
 </body>
 
