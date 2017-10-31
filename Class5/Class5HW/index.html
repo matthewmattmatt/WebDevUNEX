@@ -3,85 +3,7 @@
 <html>
 <head>
 	<title>My Shopping Cart</title>
-	<script>
 
-		var customerOrder = [
-			{
-				itemname:"bananas",
-				type:"fruit",
-				qty: 2,
-				unitPrice:3.50
-			},
-			{
-				itemname:"apples",
-				type:"fruit",
-				qty: 3,
-				unitPrice:1.00
-			},
-			{
-				itemname:"pumpkins ",
-				type:"vegetable",
-				qty: 5,
-				unitPrice:5.00
-			},
-			{
-				itemname:"passionfruit",
-				type:"fruit",
-				qty: 7,
-				unitPrice:1.50
-			},
-		];
-
-		function createHTMLforInvoice (lineitem) {
-			return	  '<div>'
-						+ lineitem.itemname 
-						+ " " 
-						+ lineitem.type 
-						+ " " 
-						+ lineitem.qty
-						+ " "
-						+ lineitem.unitPrice
-						+ " "
-						+ (lineitem.unitPrice * lineitem.qty)
-					+ "</div>"
-					;
-		}
-
-		function createTotalPrice () {
-			var totalunitPrice = "";
-			for (i = 0; i < customerOrder.length; i++) {
-				totalPrice += (customerOrder.unitPrice * customerOrder.qty);
-			}
-			document.getElementById("totalPrice").innerHTML = totalunitPrice;
-		}
-
-		function displayInvoice() {
-			var orderDisplay = "";
-			for (currentItem of customerOrder) {
-					orderDisplay += createHTMLforInvoice(currentItem);
-			}
-			document.getElementById("invoice").innerHTML = orderDisplay;
-		}
-
-		/*
-		function displayTotal() {
-			var totalPrice = 0.0;
-			for (i = 0; i < customerOrder.length; i++) {
-				totalPrice + (customerOrder.qty * customerOrder.unitPrice);
-			}
-			document.getElementById("totalPrice").innerHTML = totalPrice;
-		}
-		*/
-
-		window.onload = displayInvoice;
-		window.onload = createTotalPrice;
-
-		/*
-		document.getElementById("invoice").innerHTML =
-		createHTMLforInvoice(customerOrder[0]);
-		*/
-
-	</script>
 	<style></style>
 </head>
 <body>
@@ -89,6 +11,78 @@
 	<h1>Order Receipt</h1>
 	<div id="invoice"></div>
 
-	<h2>Total Amount Due: <div class="Price" id="totalPrice"></div></h2>
+	<h2>Total Amount Due: <span id="invoiceTotal">This is the total</span></h2>
+
+<script>
+	var customerOrder = [
+		{
+			itemname:"bananas",
+			type:"fruit",
+			qty: 2,
+			unitPrice:3.50
+		},
+		{
+			itemname:"apples",
+			type:"fruit",
+			qty: 3,
+			unitPrice:1.00
+		},
+		{
+			itemname:"pumpkins ",
+			type:"vegetable",
+			qty: 5,
+			unitPrice:5.00
+		},
+		{
+			itemname:"passionfruit",
+			type:"fruit",
+			qty: 7,
+			unitPrice:1.50
+		},
+	];
+
+	function createHTMLforInvoice (lineitem) {
+		return	  '<div>'
+					+ lineitem.itemname 
+					+ " " 
+					+ lineitem.type 
+					+ " " 
+					+ lineitem.qty
+					+ " "
+					+ lineitem.unitPrice
+					+ " "
+					+ (lineitem.unitPrice * lineitem.qty)
+				+ "</div>"
+				;
+	}
+
+	function displayInvoice() {
+		var orderDisplay = "";
+		for (currentItem of customerOrder) {
+				orderDisplay += createHTMLforInvoice(currentItem);
+		}
+		document.getElementById("invoice").innerHTML = orderDisplay;
+	};
+
+	window.onload = displayInvoice;
+
+
+	function calculateTotal(array) {
+		var totalPrice = 0.0;
+		for (i = 0; i < array.length; i++) {
+			totalPrice += (customerOrder[i].qty * customerOrder[i].unitPrice);
+		}
+		return(totalPrice);
+	};
+
+	document.getElementById("invoiceTotal").innerHTML = (calculateTotal(customerOrder));
+
+	/*
+	document.getElementById("invoice").innerHTML =
+	createHTMLforInvoice(customerOrder[0]);
+	*/
+	
+</script>
 </body>
+
 </html>
