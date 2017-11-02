@@ -5,10 +5,25 @@
 	<title>My Shopping Cart</title>
 
 	<style>
+		.invoice {
+			width: 50%;	
+		}
 		.name {
 			color: red;
+			display: inline;
+		}
+		.type {
 			display: inline;			
-			}
+		}
+		.qty {
+			display: inline;			
+		}
+		.price {
+			display: inline;			
+		}
+		.totalCost {
+			display: inline;			
+		}
 	</style>
 
 	<script>
@@ -40,18 +55,26 @@
 		];
 
 		function createHTMLforInvoice (lineitem) {
-			return	  '<div>'
+			return	  '<div class="invoice">'
 						+ '<div class="name">'
 						+ lineitem.itemname 
 						+ '</div>'
-						+ " " 
-						+ lineitem.type 
-						+ " " 
+						+ " "
+						+ '<div class="type">'
+						+ lineitem.type
+						+ '</div>'
+						+ " "
+						+ '<div class="qty">'
 						+ lineitem.qty
+						+ '</div>'
 						+ " "
+						+ '<div class="price">'
 						+ lineitem.unitPrice
+						+ '</div>'
 						+ " "
+						+ '<div class="totalCost">'
 						+ (lineitem.unitPrice * lineitem.qty)
+						+ '</div>'
 					+ "</div>"
 					;
 		}
@@ -64,6 +87,8 @@
 			return totalPrice;
 		}
 
+		var exactPrice = calculateTotal().toFixed(2);
+
 		function startup() {
 
 			var orderDisplay = "";
@@ -72,7 +97,12 @@
 			}
 				
 				document.getElementById("invoiceTotal").innerHTML = 
+				exactPrice;
+				
+				/*
+				document.getElementById("invoiceTotal").innerHTML = 
 				String(calculateTotal());
+				*/
 
 				document.getElementById("invoice").innerHTML = orderDisplay;
 		}
