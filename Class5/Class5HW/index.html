@@ -69,7 +69,7 @@
 						+ lineitem.type
 						+ '</div>'
 						+ " "
-						+ '<div class="qty" onclick="adjust()">'
+						+ '<div class="qty" id="quantity" onclick="adjust()">'
 						+ lineitem.qty
 						+ '</div>'
 						+ " "
@@ -84,6 +84,17 @@
 					;
 		}
 
+		function adjust(array) {
+			var newQty = prompt("Please enter your quantity");
+			for (currentItem of customerOrder){
+				if (newQty == 0) {
+					document.getElementById("quantity").style.display.hidden;
+				} else {
+					document.getElementById("quantity").innerHTML = newQty;
+				}
+			}
+		}
+
 		function calculateTotal(array) {
 			var totalPrice = 0.0;
 			for (currentItem of customerOrder) {
@@ -94,10 +105,6 @@
 
 		var exactPrice = calculateTotal().toFixed(2);
 
-		function adjust() {
-			alert("clicked");
-		}
-
 		function startup() {
 
 			var orderDisplay = "";
@@ -105,7 +112,7 @@
 				orderDisplay += createHTMLforInvoice(currentItem);
 			}
 				
-				document.getElementById("invoiceTotal").innerHTML = 
+				document.getElementById("invoiceTotal").innerHTML =
 				exactPrice;
 				
 				/*
