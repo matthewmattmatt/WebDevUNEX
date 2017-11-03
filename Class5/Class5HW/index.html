@@ -6,23 +6,28 @@
 
 	<style>
 		.invoice {
-			width: 50%;	
+			width: 100%;	
 		}
 		.name {
 			color: red;
 			display: inline;
 		}
 		.type {
-			display: inline;			
+			display: inline;
+			padding: 1.5em;
 		}
 		.qty {
-			display: inline;			
+			display: inline-block;
+			padding: 1.5em;
+			border: 1px solid black;
 		}
 		.price {
-			display: inline;			
+			display: inline;
+			padding: 1.5em;
 		}
 		.totalCost {
-			display: inline;			
+			display: inline;
+			padding: 1.5em;
 		}
 	</style>
 
@@ -57,23 +62,23 @@
 		function createHTMLforInvoice (lineitem) {
 			return	  '<div class="invoice">'
 						+ '<div class="name">'
-						+ lineitem.itemname 
+						+ lineitem.itemname
 						+ '</div>'
 						+ " "
 						+ '<div class="type">'
 						+ lineitem.type
 						+ '</div>'
 						+ " "
-						+ '<div class="qty">'
+						+ '<div class="qty" onclick="adjust()">'
 						+ lineitem.qty
 						+ '</div>'
 						+ " "
 						+ '<div class="price">'
-						+ lineitem.unitPrice
+						+ lineitem.unitPrice.toFixed(2)
 						+ '</div>'
 						+ " "
 						+ '<div class="totalCost">'
-						+ (lineitem.unitPrice * lineitem.qty)
+						+ (lineitem.unitPrice * lineitem.qty).toFixed(2)
 						+ '</div>'
 					+ "</div>"
 					;
@@ -88,6 +93,10 @@
 		}
 
 		var exactPrice = calculateTotal().toFixed(2);
+
+		function adjust() {
+			alert("clicked");
+		}
 
 		function startup() {
 
