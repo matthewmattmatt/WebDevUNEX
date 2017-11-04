@@ -81,6 +81,8 @@
 			},
 		];
 
+//creates HTML within which the array is displayed
+
 		function createHTMLforInvoice (lineitem) {
 			return	  '<div class="invoice">'
 						+ '<div class="name">'
@@ -91,11 +93,11 @@
 						+ lineitem.type
 						+ '</div>'
 						+ " "
-						+ '<div class="qty" id="quantity" onclick="adjustAmount() {}">'
+						+ '<div class="qty" id="quantity" onclick="adjustAmount()">'
 						+ lineitem.qty
 						+ '</div>'
 						+ " "
-						+ '<button id="button1" type="button" onclick="down(1);"> - </button>'
+						+ '<button id="button1" type="button" onclick="adjustAmount();"> - </button>'
 						+ " "
 						+ '<button id="button2" type="button" onclick="up(1);"> + </button>'
 						+ " "
@@ -110,6 +112,15 @@
 					;
 		}
 
+//makes the buttons do something
+
+		function adjustAmount(){
+
+		}
+
+
+//calculates the total price based on qty * price
+
 		function calculateTotal(array) {
 			var totalPrice = 0.0;
 			for (currentItem of customerOrder) {
@@ -118,7 +129,11 @@
 			return totalPrice;
 		}
 
+//total price
+
 		var exactPrice = calculateTotal().toFixed(2);
+
+//onload, displays items and caculated total price
 
 		function startup() {
 
@@ -130,11 +145,6 @@
 				document.getElementById("invoiceTotal").innerHTML =
 				exactPrice;
 				
-				/*
-				document.getElementById("invoiceTotal").innerHTML = 
-				String(calculateTotal());
-				*/
-
 				document.getElementById("invoice").innerHTML = orderDisplay;
 		}
 
