@@ -11,24 +11,46 @@
 		.name {
 			color: red;
 			display: inline;
+			position: relative;
+			left: 1em;
 		}
 		.type {
 			display: inline;
-			padding: 1.5em;
+			position: absolute;
+			left: 7em;
 		}
 		.qty {
 			display: inline-block;
-			padding: 1.5em;
-			border: 1px solid black;
+			position: absolute;
+			left: 14em;
 		}
 		.price {
 			display: inline;
-			padding: 1.5em;
+			position: absolute;
+			left: 21em;
 		}
 		.totalCost {
 			display: inline;
-			padding: 1.5em;
+			position: absolute;
+			left: 28em;
 		}
+
+		.price::before {
+			content: "$ ";
+		}
+		.totalCost::before {
+			content: "$ ";
+		}
+
+		#button1{
+			position: absolute;
+			left: 24em;
+		}
+		#button2 {
+			position: absolute;
+			left: 27em;
+		}
+
 	</style>
 
 	<script>
@@ -36,25 +58,25 @@
 			{
 				itemname:"bananas",
 				type:"fruit",
-				qty: 2,
+				qty: 0,
 				unitPrice:3.50
 			},
 			{
 				itemname:"apples",
 				type:"fruit",
-				qty: 3,
+				qty: 0,
 				unitPrice:1.00
 			},
 			{
 				itemname:"pumpkins ",
 				type:"vegetable",
-				qty: 5,
+				qty: 0,
 				unitPrice:5.00
 			},
 			{
 				itemname:"passionfruit",
 				type:"fruit",
-				qty: 7,
+				qty: 0,
 				unitPrice:1.50
 			},
 		];
@@ -69,9 +91,13 @@
 						+ lineitem.type
 						+ '</div>'
 						+ " "
-						+ '<div class="qty" id="quantity" onclick="adjust()">'
+						+ '<div class="qty" id="quantity" onclick="adjustAmount() {}">'
 						+ lineitem.qty
 						+ '</div>'
+						+ " "
+						+ '<button id="button1" type="button" onclick="down(1);"> - </button>'
+						+ " "
+						+ '<button id="button2" type="button" onclick="up(1);"> + </button>'
 						+ " "
 						+ '<div class="price">'
 						+ lineitem.unitPrice.toFixed(2)
@@ -82,17 +108,6 @@
 						+ '</div>'
 					+ "</div>"
 					;
-		}
-
-		function adjust(array) {
-			var newQty = prompt("Please enter your quantity");
-			for (currentItem of customerOrder){
-				if (newQty == 0) {
-					document.getElementById("quantity").style.display.hidden;
-				} else {
-					document.getElementById("quantity").innerHTML = newQty;
-				}
-			}
 		}
 
 		function calculateTotal(array) {
