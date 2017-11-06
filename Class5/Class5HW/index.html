@@ -8,6 +8,9 @@
 		.invoice {
 			width: 100%;	
 		}
+		.zeroQuantity {
+			display: none;
+		}
 		.name {
 			color: red;
 			display: inline;
@@ -65,19 +68,19 @@
 			{
 				itemname:"apples",
 				type:"fruit",
-				qty: 2,
+				qty: 1,
 				unitPrice:1.00
 			},
 			{
 				itemname:"pumpkins ",
 				type:"vegetable",
-				qty: 0,
+				qty: 1,
 				unitPrice:5.00
 			},
 			{
 				itemname:"passionfruit",
 				type:"fruit",
-				qty: 0,
+				qty: 1,
 				unitPrice:1.50
 			},
 		];
@@ -85,7 +88,7 @@
 //creates HTML within which the array is displayed
 
 		function createHTMLforInvoice (lineitem, i) {
-			return	  '<div class="invoice">'
+			return	  '<div id="itemInvoice'+ i +'" class="invoice">'
 						+ '<div class="name">'
 						+ lineitem.itemname
 						+ '</div>'
@@ -117,22 +120,57 @@
 
 		function adjustAmount(i, amount){
 			var newAmount = (customerOrder[i].qty += amount);
-			if (newAmount < 0) {
-				newAmount = 0;
+			if (newAmount == 0) {
+				hideItem(i);
 			}
 
 		document.getElementById('quantity' + i ).innerHTML = newAmount;
 
+		adjustItemTotal(i);
+
+		document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+
 		adjustGrandTotal();
+
+		document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+
+			if (adjustGrandTotal() == 0) {
+				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
+			}
+		}
+
+//recalculate item total
+
+		function adjustItemTotal(i) {
+			var newItemTotal = 0.0;
+			newItemTotal += (customerOrder[i].qty * customerOrder[i].unitPrice);
+
+			if (newItemTotal < 0) {
+				newItemTotal = 0;
+			}
+
+			return newItemTotal;
+		}
+
+//hide the line with zero quantity
+
+		function hideItem(i) {
+		document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
 		}
 
 //recalculate grand total
 
 		function adjustGrandTotal(i) {
-			alert (customerOrder[i].qty * customerOrder[i].unitPrice);
+			var newTotalPrice = 0.0;
+			for (var i = 0; i < customerOrder.length; i++) {
+				newTotalPrice += (customerOrder[i].qty * customerOrder[i].unitPrice);
+			}
+
+			if (newTotalPrice < 0) {
+				newTotalPrice = 0;
+			}
+			return newTotalPrice;
 		}
-
-
 
 //calculates the total price based on qty * price
 
@@ -160,7 +198,7 @@
 			}
 				
 			document.getElementById("invoiceTotal").innerHTML = exactPrice;
-			document.getElementById("invoice").innerHTML = orderDisplay;
+			document.getElementById("orderInvoice").innerHTML = orderDisplay;
 		}
 
 		window.onload = startup;
@@ -172,7 +210,7 @@
 <body>
 
 	<h1>Order Receipt</h1>
-	<div id="invoice"></div>
+	<div id="orderInvoice"></div>
 
 	<h2>Total Amount Due: <span id="invoiceTotal">This is the total</span></h2>
 
