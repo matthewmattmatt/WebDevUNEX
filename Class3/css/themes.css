@@ -34,14 +34,31 @@ a:visited {
 	border: dotted;
 }
 
-div.tableLine {
-	border-bottom: 1pt solid rgb(8,7,58);
+.aboutMe {
+	width: 70%;
+}
+
+.educationTable {
 	width: 100%;
-	padding-bottom: 1.5em;
+	padding-left: 10%;
 }
 
 .educationBlock {
 	border: 1pt solid black;
+	width: 15em;
+	height: 11em;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tableTitleRow {
+	font-size: 15pt;
+	font-weight: bold;
+	padding-left: .5em;
+}
+
+.educationRow {
+	padding-left: 1.5em;
 }
 
  /*
