@@ -40,30 +40,8 @@ div.tableLine {
 	padding-bottom: 1.5em;
 }
 
-div.tableHeadEven {
-	text-align: left;
-	display: inline-block;
-	font-size: 15pt;
-	padding-left: 1em;
-	background-color: rgba(8,7,58,.3);
-}
-
-div.tableHeadOdd {
-	text-align: left;
-	display: inline-block;
-	font-size: 15pt;
-	padding-left: 1em;
-}
-
-div.tableRowEven {
-	display: inline-block;
-	vertical-align: text-top;
-	background-color: rgba(8,7,58,.3);
-}
-
-div.tableRowOdd {
-	display: inline-block;
-	vertical-align: text-top;
+.educationBlock {
+	border: 1pt solid black;
 }
 
  /*
