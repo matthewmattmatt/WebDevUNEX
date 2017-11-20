@@ -124,15 +124,15 @@
 				hideItem(i);
 			}
 
-		document.getElementById('quantity' + i ).innerHTML = newAmount;
+			document.getElementById('quantity' + i ).innerHTML = newAmount;
 
-		adjustItemTotal(i);
+			adjustItemTotal(i);
 
-		document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
 
-		adjustGrandTotal();
+			adjustGrandTotal();
 
-		document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+			document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
 
 			if (adjustGrandTotal() == 0) {
 				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
@@ -155,7 +155,7 @@
 //hide the line with zero quantity
 
 		function hideItem(i) {
-		document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
+			document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
 		}
 
 //recalculate grand total
