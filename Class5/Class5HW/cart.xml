@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customerOrder>
+	<item>
+		<itemname>banana</itemname>
+		<type>fruit</type>
+		<qty>1</qty>
+		<unitPrice>3.50</unitPrice>
+	</item>
+	<item>
+		<itemname>apple</itemname>
+		<type>fruit</type>
+		<qty>1</qty>
+		<unitPrice>1.00</unitPrice>
+	</item>
+	<item>
+		<itemname>pumpkin</itemname>
+		<type>vegetable</type>
+		<qty>1</qty>
+		<unitPrice>5.00</unitPrice>
+	</item>
+	<item>
+		<itemname>passionfruit</itemname>
+		<type>fruit</type>
+		<qty>1</qty>
+		<unitPrice>1.50</unitPrice>
+	</item>
+</customerOrder>
