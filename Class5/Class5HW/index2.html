@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--Corrected HW from Class 4 with new features and more elegant coding-->
+<html>
+<head>
+	<title>My Shopping Cart</title>
+
+	<style>
+		.invoice {
+			width: 100%;	
+		}
+		.zeroQuantity {
+			display: none;
+		}
+		.name {
+			color: red;
+			display: inline;
+			position: relative;
+			left: 1em;
+		}
+		.type {
+			display: inline;
+			position: absolute;
+			left: 7em;
+		}
+		.qty {
+			display: inline-block;
+			position: absolute;
+			left: 14em;
+		}
+		.price {
+			display: inline;
+			position: absolute;
+			left: 21em;
+		}
+		.totalCost {
+			display: inline;
+			position: absolute;
+			left: 28em;
+		}
+
+		.price::before {
+			content: "$ ";
+		}
+		.totalCost::before {
+			content: "$ ";
+		}
+
+		#down{
+			position: absolute;
+			left: 24em;
+		}
+		#up {
+			position: absolute;
+			left: 27em;
+		}
+
+	</style>
+
+	<script>
+		'use strict';
+
+/*
+		var customerOrder = [
+			{
+				itemname:"bananas",
+				type:"fruit",
+				qty: 1,
+				unitPrice:3.50
+			},
+			{
+				itemname:"apples",
+				type:"fruit",
+				qty: 1,
+				unitPrice:1.00
+			},
+			{
+				itemname:"pumpkins ",
+				type:"vegetable",
+				qty: 1,
+				unitPrice:5.00
+			},
+			{
+				itemname:"passionfruit",
+				type:"fruit",
+				qty: 1,
+				unitPrice:1.50
+			},
+		];
+*/
+
+//creates HTML within which the array is displayed
+
+		function createHTMLforInvoice (lineitem, i) {
+			return	  '<div id="itemInvoice'+ i +'" class="invoice">'
+						+ '<div class="name">'
+						+ lineitem.itemname
+						+ '</div>'
+						+ " "
+						+ '<div class="type">'
+						+ lineitem.type
+						+ '</div>'
+						+ " "
+						+ '<div id="quantity'+ i +'" class="qty">'
+						+ lineitem.qty
+						+ '</div>'
+						+ " "
+						+ '<button id="down" type="button" onclick="adjustAmount('+ i +', -1);"> - </button>'
+						+ " "
+						+ '<button id="up" type="button" onclick="adjustAmount('+ i +', 1);"> + </button>'
+						+ " "
+						+ '<div class="price">'
+						+ lineitem.unitPrice.toFixed(2)
+						+ '</div>'
+						+ " "
+						+ '<div id="finalPrice' + i +'" class="totalCost">'
+						+ (lineitem.unitPrice * lineitem.qty).toFixed(2)
+						+ '</div>'
+					+ "</div>"
+					;
+		}
+
+//makes the buttons adjust the amount
+
+		function adjustAmount(i, amount){
+			var newAmount = (customerOrder[i].qty += amount);
+			if (newAmount == 0) {
+				hideItem(i);
+			}
+
+			document.getElementById('quantity' + i ).innerHTML = newAmount;
+
+			adjustItemTotal(i);
+
+			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+
+			adjustGrandTotal();
+
+			document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+
+			if (adjustGrandTotal() == 0) {
+				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
+			}
+		}
+
+//recalculate item total
+
+		function adjustItemTotal(i) {
+			var newItemTotal = 0.0;
+			newItemTotal += (customerOrder[i].qty * customerOrder[i].unitPrice);
+
+			if (newItemTotal < 0) {
+				newItemTotal = 0;
+			}
+
+			return newItemTotal;
+		}
+
+//hide the line with zero quantity
+
+		function hideItem(i) {
+			document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
+		}
+
+//recalculate grand total
+
+		function adjustGrandTotal(i) {
+			var newTotalPrice = 0.0;
+			for (var i = 0; i < customerOrder.length; i++) {
+				newTotalPrice += (customerOrder[i].qty * customerOrder[i].unitPrice);
+			}
+
+			if (newTotalPrice < 0) {
+				newTotalPrice = 0;
+			}
+			return newTotalPrice;
+		}
+
+//calculates the total price based on qty * price
+
+		function calculateTotal() {
+			var totalPrice = 0.0;
+			for (var i = 0; i < customerOrder.length; i++) {
+				var currentItem = customerOrder[i];
+				totalPrice += (currentItem.qty * currentItem.unitPrice);
+			}
+			return totalPrice;
+		}
+
+
+//total price
+
+		var exactPrice = calculateTotal().toFixed(2);
+
+//onload, displays items and caculated total price
+
+		function startup() {
+			var orderDisplay = "";
+			for (var i = 0; i < customerOrder.length; i++){
+				var currentItem = customerOrder[i];
+				orderDisplay += createHTMLforInvoice(currentItem, i);
+			}
+				
+			document.getElementById("invoiceTotal").innerHTML = exactPrice;
+			document.getElementById("orderInvoice").innerHTML = orderDisplay;
+		}
+
+		window.onload = startup;
+
+	</script>
+
+</head>
+
+<body>
+
+	<h1>Order Receipt</h1>
+	<div id="orderInvoice"></div>
+
+	<h2>Total Amount Due: <span id="invoiceTotal">This is the total</span></h2>
+
+
+
+</body>
+
+</html>
