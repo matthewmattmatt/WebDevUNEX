@@ -1,0 +1,6 @@
+"customerOrder":[
+	{"itemname":"bananas", "type":"fruit", "qty":1, "unitPrice":3.5},
+	{"itemname":"apples", "type":"fruit", "qty":1, "unitPrice":1},
+	{"itemname":"pumpkins ", "type":"vegetable", "qty":1, "unitPrice":5},
+	{"itemname":"passionfruit", "type":"fruit", "qty":1, "unitPrice":1.5},
+];
