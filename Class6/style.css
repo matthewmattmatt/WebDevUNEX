@@ -1,0 +1,49 @@
+
+.invoice {
+	width: 100%;	
+}
+.zeroQuantity {
+	display: none;
+}
+.name {
+	color: red;
+	display: inline;
+	position: relative;
+	left: 1em;
+}
+.type {
+	display: inline;
+	position: absolute;
+	left: 7em;
+}
+.qty {
+	display: inline-block;
+	position: absolute;
+	left: 14em;
+}
+.price {
+	display: inline;
+	position: absolute;
+	left: 21em;
+}
+.totalCost {
+	display: inline;
+	position: absolute;
+	left: 28em;
+}
+
+.price::before {
+	content: "$ ";
+}
+.totalCost::before {
+	content: "$ ";
+}
+
+#down{
+	position: absolute;
+	left: 24em;
+}
+#up {
+	position: absolute;
+	left: 27em;
+}

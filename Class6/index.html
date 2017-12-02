@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--Class 6-->
+<html>
+<head>
+	<title>My Shopping Cart</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script>
+		'use strict';
+
+		var orderJSON = {
+			  customer : {
+			  	name: "Matt",
+			  	location: "California",
+			  	canPay: true
+			  },
+
+			  lineItems: [
+				{
+					itemname:"bananas",
+					type:"fruit",
+					qty: 1,
+					unitPrice:3.50
+				},
+				{
+					itemname:"apples",
+					type:"fruit",
+					qty: 1,
+					unitPrice:1.00
+				},
+				{
+					itemname:"pumpkins ",
+					type:"vegetable",
+					qty: 1,
+					unitPrice:5.00
+				},
+				{
+					itemname:"passionfruit",
+					type:"fruit",
+					qty: 1,
+					unitPrice:1.50
+				}
+			]
+		};
+
+//constructor for customer info
+
+		function Customer(name, location, canPay) {
+			this.name = name;
+			this.location = location;
+			this.canPay = canPay;
+		}
+
+		console.log(Customer);
+
+//constructor for order items
+
+		function Item(itemname, type, qty, unitPrice) {
+			this.itemname = itemname;
+			this.type = type;
+			this.qty = qty;
+			this.unitPrice = unitPrice;
+		}
+
+//converts customerOrderJSON to array of objects
+
+		var orderItems = [];
+
+		for (var i = 0; i < orderJSON.lineItems.length; i++) {
+			var currentItem = orderJSON.lineItems[i];
+			orderItems[i] = new Item(currentItem.itemname, currentItem.type, currentItem.qty, currentItem.unitPrice);
+		}
+
+		console.log(orderItems);
+
+//constructor for total order
+
+		function Order (Customer, Item) {
+			this.Customer = Customer;
+			this.Item = Item;
+		}
+
+//converts items and customer to one order
+
+
+
+		
+/*
+
+An Order Object that contains a customer and array of linetems
+this.addHTMLfForYourselfToThisDiv(id){}
+
+		var cartItem = [];
+		cartItem[0] = new SelectedItem();
+		cartItem[1] = new SelectedItem();
+		cartItem[2] = new SelectedItem();
+		cartItem[3] = new SelectedItem();
+
+		window.onload = function() {
+			cartItem[0].showItem();
+		}
+*/
+
+/*
+//creates HTML within which the array is displayed
+
+		function createHTMLforInvoice (lineitem, i) {
+			return	  '<div id="itemInvoice'+ i +'" class="invoice">'
+						+ '<div class="name">'
+						+ lineitem.itemname
+						+ '</div>'
+						+ " "
+						+ '<div class="type">'
+						+ lineitem.type
+						+ '</div>'
+						+ " "
+						+ '<div id="quantity'+ i +'" class="qty">'
+						+ lineitem.qty
+						+ '</div>'
+						+ " "
+						+ '<button id="down" type="button" onclick="adjustAmount('+ i +', -1);"> - </button>'
+						+ " "
+						+ '<button id="up" type="button" onclick="adjustAmount('+ i +', 1);"> + </button>'
+						+ " "
+						+ '<div class="price">'
+						+ lineitem.unitPrice.toFixed(2)
+						+ '</div>'
+						+ " "
+						+ '<div id="finalPrice' + i +'" class="totalCost">'
+						+ (lineitem.unitPrice * lineitem.qty).toFixed(2)
+						+ '</div>'
+					+ "</div>"
+					;
+		}
+
+//makes the buttons adjust the amount
+
+		function adjustAmount(i, amount){
+			var newAmount = (customerOrder[i].qty += amount);
+			if (newAmount == 0) {
+				hideItem(i);
+			}
+
+			document.getElementById('quantity' + i ).innerHTML = newAmount;
+
+			adjustItemTotal(i);
+
+			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+
+			adjustGrandTotal();
+
+			document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+
+			if (adjustGrandTotal() == 0) {
+				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
+			}
+		}
+
+//recalculate item total
+
+		function adjustItemTotal(i) {
+			var newItemTotal = 0.0;
+			newItemTotal += (customerOrder[i].qty * customerOrder[i].unitPrice);
+
+			if (newItemTotal < 0) {
+				newItemTotal = 0;
+			}
+
+			return newItemTotal;
+		}
+
+//hide the line with zero quantity
+
+		function hideItem(i) {
+			document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
+		}
+
+//recalculate grand total
+
+		function adjustGrandTotal(i) {
+			var newTotalPrice = 0.0;
+			for (var i = 0; i < customerOrder.length; i++) {
+				newTotalPrice += (customerOrder[i].qty * customerOrder[i].unitPrice);
+			}
+
+			if (newTotalPrice < 0) {
+				newTotalPrice = 0;
+			}
+			return newTotalPrice;
+		}
+
+//calculates the total price based on qty * price
+
+		function calculateTotal() {
+			var totalPrice = 0.0;
+			for (var i = 0; i < customerOrder.length; i++) {
+				var currentItem = customerOrder[i];
+				totalPrice += (currentItem.qty * currentItem.unitPrice);
+			}
+			return totalPrice;
+		}
+
+
+//total price
+
+		var exactPrice = calculateTotal().toFixed(2);
+
+//onload, displays items and caculated total price
+
+		function startup() {
+			var orderDisplay = "";
+			for (var i = 0; i < customerOrder.length; i++){
+				var currentItem = customerOrder[i];
+				orderDisplay += createHTMLforInvoice(currentItem, i);
+			}
+				
+			document.getElementById("invoiceTotal").innerHTML = exactPrice;
+			document.getElementById("orderInvoice").innerHTML = orderDisplay;
+		}
+
+		window.onload = startup;
+*/
+	</script>
+
+</head>
+
+<body>
+
+	<h1>Order Receipt</h1>
+	<div id="orderInvoice"></div>
+
+	<h2>Total Amount Due: <span id="invoiceTotal">This is the total</span></h2>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Class 6 Demo</title>
+<script>
+'use strict'
+function customer(name, address) {
+	this._name = name;
+	this._address = address;
+	this.showName = function(){
+		alert(this._name);
+	}
+}
+var fred = new customer ("Fred", "123 Fake Street");
+var homer = new customer ("Homer", "123 Fake Street");
+
+fred.showName();
+homer.showName();
+
+
+</script>
+</head>
+<body>
+<h1>Hello</h1>
+</body>
+</html>
+
+
+
+
+
