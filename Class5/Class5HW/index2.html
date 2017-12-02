@@ -144,32 +144,24 @@
 
 //AJAX Request
 	
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var customerOrder = JSON.parse(this.responseText);
-		  		document.getElementById("orderInvoice").innerHTML = customerOrder[0];
-		  	}
+		var cartRequest = new XMLHttpRequest();
+		cartRequest.open('GET', 'cart.json')
+		cartRequest.onload = function() {
+			var customerOrder = JSON.parse(cartRequest.responseText); 
+		  	createHTMLforInvoice(cartData);
 		};
-
-		xmlhttp.open("GET", "cart.json", true);
-		xmlhttp.send();
+		cartRequest.send();
 
 
 //onload, displays items and caculated total price
 /*
-		function startup() {
-			var orderDisplay = "";
-			for (var i = 0; i < customerOrder.length; i++){
-				var currentItem = customerOrder[i];
-				orderDisplay += createHTMLforInvoice(currentItem, i);
-			}
-				
-			document.getElementById("invoiceTotal").innerHTML = exactPrice;
-			document.getElementById("orderInvoice").innerHTML = orderDisplay;
-		}
-
-		window.onload = startup;
+	var ourRequest = new XMLHttpRequest();
+	ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-' + pageCounter + '.json');
+	ourRequest.onload = function() {
+		var ourData = JSON.parse(ourRequest.responseText);
+		renderHTML(ourData);
+	};
+	ourRequest.send();
 */
 
 //recalculate item total
