@@ -5,10 +5,11 @@
 	<title>My Shopping Cart</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script>
+
 		'use strict';
 
 		var orderJSON = {
-			  customer : {
+			  customer: {
 			  	name: "Matt",
 			  	location: "California",
 			  	canPay: true
@@ -44,22 +45,33 @@
 
 //constructor for customer info
 
-		function Customer(name, location, canPay) {
+		function Customer( name, location, canPay ) {
 			this.name = name;
 			this.location = location;
 			this.canPay = canPay;
 		}
 
-//constructor for order items
+//output of Customer contructor
 
-		function Item(itemname, type, qty, unitPrice) {
+		var customer1 = {};
+
+		for (var i = 0; i < orderJSON.length; i++) {
+			var currentCustomer = orderJSON.customer;
+			customer1 = new Customer(currentCustomer.name, currentCustomer.location,
+				currentCustomer.canPay);
+		}
+
+
+//constructor for items in the order
+
+		function Item( itemname, type, qty, unitPrice ) {
 			this.itemname = itemname;
 			this.type = type;
 			this.qty = qty;
 			this.unitPrice = unitPrice;
 		}
 
-//converts customerOrderJSON to array of objects
+//output of Item constructor
 
 		var orderItems = [];
 
@@ -72,16 +84,17 @@
 
 //constructor for total order
 
-		function Order (Customer, Item) {
-			this.Customer = Customer;
-			this.Item = Item;
+		function Order() {
+
 		}
 
-		console.log(Order);
+
+
 
 //converts items and customer to one order
 
 
+		
 
 		
 /*
