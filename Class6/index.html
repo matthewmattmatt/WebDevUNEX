@@ -49,18 +49,14 @@
 			this.name = name;
 			this.location = location;
 			this.canPay = canPay;
+			this.showName = function() {
+				alert(this.name);
+			}
 		}
 
 //output of Customer contructor
 
-		var customer1 = {};
-
-		for (var i = 0; i < orderJSON.length; i++) {
-			var currentCustomer = orderJSON.customer;
-			customer1 = new Customer(currentCustomer.name, currentCustomer.location,
-				currentCustomer.canPay);
-		}
-
+		var customer1 = new Customer(orderJSON.customer.name, orderJSON.customer.location, orderJSON.customer.canPay);
 
 //constructor for items in the order
 
@@ -80,11 +76,14 @@
 			orderItems[i] = new Item(currentItem.itemname, currentItem.type, currentItem.qty, currentItem.unitPrice);
 		}
 
-		console.log(orderItems);
+		window.onload = function() {
+			console.log(customer1);
+			console.log(orderItems);
+		}
 
 //constructor for total order
 
-		function Order() {
+		function Order(shopper, lineItem) {
 
 		}
 
@@ -239,6 +238,9 @@ this.addHTMLfForYourselfToThisDiv(id){}
 <body>
 
 	<h1>Order Receipt</h1>
+
+	<div id="customerInfo"></div>
+
 	<div id="orderInvoice"></div>
 
 	<h2>Total Amount Due: <span id="invoiceTotal">This is the total</span></h2>
