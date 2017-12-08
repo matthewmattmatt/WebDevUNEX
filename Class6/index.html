@@ -12,7 +12,7 @@
 			  customer: {
 			  	name: "Matt",
 			  	location: "California",
-			  	canPay: true
+			  	hasPaid: "Yes"
 			  },
 
 			  lineItems: [
@@ -45,10 +45,10 @@
 
 //constructor for customer info
 
-		function Customer( name, location, canPay ) {
+		function Customer( name, location, hasPaid ) {
 			this.name = name;
 			this.location = location;
-			this.canPay = canPay;
+			this.hasPaid = hasPaid;
 			this.showName = function() {
 				alert(this.name);
 			}
@@ -56,7 +56,7 @@
 
 //output of Customer contructor
 
-		var customer1 = new Customer(orderJSON.customer.name, orderJSON.customer.location, orderJSON.customer.canPay);
+		var currentCustomer = new Customer(orderJSON.customer.name, orderJSON.customer.location, orderJSON.customer.hasPaid);
 
 //constructor for items in the order
 
@@ -77,17 +77,25 @@
 		}
 
 		window.onload = function() {
-			console.log(customer1);
+			console.log(currentCustomer);
 			console.log(orderItems);
 		}
 
-//constructor for total order
+//constructor for order
 
-		function Order(shopper, lineItem) {
-
+		function Order(customer, lineItems) {
+			this.customer = customer;
+			this.lineItems = lineItems;
+			this.showOrder = function() {
+				console.log(this.lineItems);
+			}
 		}
 
+//output of Order constructor
 
+	var myOrder = new Order(currentCustomer, orderItems);
+
+	console.log(myOrder);
 
 
 //converts items and customer to one order
