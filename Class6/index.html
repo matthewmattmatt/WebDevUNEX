@@ -101,44 +101,51 @@
 				+ "</div>"
 				;
 			}
+			this.calculateTotalPrice = function (id, i) {		//calculates the total price based on qty * price
+				var totalPrice = 0.0;
+				for (var i = 0; i < this.lineItems.length; i++) {
+					var currentItem = this.lineItems[i];
+					totalPrice += (currentItem.qty * currentItem.unitPrice);
+				}
+				return totalPrice;
 
+				document.getElementById("invoiceTotal").innerHTML = totalPrice;
+			}
+/*
 			//makes the buttons adjust the amount
 
-				function adjustAmount(amount, i){
-					var newAmount = (this.qty += amount);
-					if (newAmount == 0) {
-						hideItem(i);
-					}
+			function adjustAmount(amount, i){
+				var newAmount = (this.qty += amount);
+				if (newAmount == 0) {
+					hideItem(i);
+				}
 
-					document.getElementById('quantity' + i ).innerHTML = newAmount;
+				document.getElementById('quantity' + i ).innerHTML = newAmount;
 
-					adjustItemTotal(i);
+				adjustItemTotal(i);
 
-					document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+				document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
 
-					adjustGrandTotal();
+				adjustGrandTotal();
 
-					document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+				document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
 
-					if (adjustGrandTotal() == 0) {
-						document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
+				if (adjustGrandTotal() == 0) {
+					document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
 				}
 			}
 
-				function adjustItemTotal(i) {
-					var newItemTotal = 0.0;
-					newItemTotal += (this.qty * this.unitPrice);
+			function adjustItemTotal(i) {
+				var newItemTotal = 0.0;
+				newItemTotal += (this.qty * this.unitPrice);
 
-					if (newItemTotal < 0) {
-						newItemTotal = 0;
-					}
-
-					return newItemTotal;
+				if (newItemTotal < 0) {
+					newItemTotal = 0;
 				}
-		
-		//total price
 
-				var exactPrice = calculateTotal().toFixed(2);
+				return newItemTotal;
+			}
+*/
 		}
 
 //output of Item constructor
@@ -160,15 +167,7 @@
 				for (var i = 0; i < this.lineItems.length; i++) {
 					this.lineItems[i].showLineItemsinHTML(i);
 				}
-			}
-
-			function calculateTotal() {		//calculates the total price based on qty * price
-				var totalPrice = 0.0;
-				for (var i = 0; i < this.lineItems.length; i++) {
-					var currentItem = this.lineItems[i];
-					totalPrice += (currentItem.qty * currentItem.unitPrice);
-				}
-				return totalPrice;
+				this.lineItems.calculateTotalPrice();
 			}
 		}
 
@@ -180,13 +179,7 @@
 
 			var myOrder = new Order(currentCustomer, orderItems);
 			myOrder.showOrder();
-
-			document.getElementById("invoiceTotal").innerHTML = Item.exactPrice;
 		}
-
-//total price
-
-		//var exactPrice = calculateTotal().toFixed(2);
 
 /*
 //makes the buttons adjust the amount
@@ -211,6 +204,10 @@
 				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
 			}
 		}
+
+//total price
+
+		var exactPrice = calculateTotal().toFixed(2);
 */
 
 //recalculate item total
@@ -234,7 +231,7 @@
 			document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
 		}
 
-
+/*
 
 //recalculate grand total
 
@@ -250,10 +247,10 @@
 			return newTotalPrice;
 		}
 
-
 //onload, displays items and caculated total price
 
-		//document.getElementById("invoiceTotal").innerHTML = exactPrice;
+		document.getElementById("invoiceTotal").innerHTML = exactPrice;
+*/
 
 
 	</script>
