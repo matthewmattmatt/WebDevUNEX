@@ -52,7 +52,7 @@
 			this.hasPaid = hasPaid;
 			this.showCustomerinHTML = function(id) {
 				document.getElementById("customerInfo").innerHTML =
-					'<div>' +
+					'<div id=#customerDiv>' +
 					'Customer Name: ' + this.name + '<br/>' +
 					'Customer Location: ' + this.location + '<br/>' +
 					'</div>'
@@ -66,7 +66,7 @@
 
 //constructor for items in the order
 
-		function Item( itemname, type, qty, unitPrice ) {
+		function Item( itemname, type, qty, unitPrice, adjustAmount ) {
 			this.itemname = itemname;
 			this.type = type;
 			this.qty = qty;
@@ -101,51 +101,6 @@
 				+ "</div>"
 				;
 			}
-			this.calculateTotalPrice = function (id, i) {		//calculates the total price based on qty * price
-				var totalPrice = 0.0;
-				for (var i = 0; i < this.lineItems.length; i++) {
-					var currentItem = this.lineItems[i];
-					totalPrice += (currentItem.qty * currentItem.unitPrice);
-				}
-				return totalPrice;
-
-				document.getElementById("invoiceTotal").innerHTML = totalPrice;
-			}
-/*
-			//makes the buttons adjust the amount
-
-			function adjustAmount(amount, i){
-				var newAmount = (this.qty += amount);
-				if (newAmount == 0) {
-					hideItem(i);
-				}
-
-				document.getElementById('quantity' + i ).innerHTML = newAmount;
-
-				adjustItemTotal(i);
-
-				document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
-
-				adjustGrandTotal();
-
-				document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
-
-				if (adjustGrandTotal() == 0) {
-					document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
-				}
-			}
-
-			function adjustItemTotal(i) {
-				var newItemTotal = 0.0;
-				newItemTotal += (this.qty * this.unitPrice);
-
-				if (newItemTotal < 0) {
-					newItemTotal = 0;
-				}
-
-				return newItemTotal;
-			}
-*/
 		}
 
 //output of Item constructor
@@ -155,6 +110,40 @@
 		for (var i = 0; i < orderJSON.lineItems.length; i++) {
 			var currentItem = orderJSON.lineItems[i];
 			orderItems[i] = new Item(currentItem.itemname, currentItem.type, currentItem.qty, currentItem.unitPrice);
+		}
+
+		//makes the buttons adjust the amount
+
+		function adjustAmount (amount, i, id) {
+			var newAmount = (orderJSON.lineItems[i].qty += amount);
+			if (newAmount == 0) {
+				hideItem(i);
+			}
+
+			document.getElementById('quantity' + i ).innerHTML = newAmount;
+
+			adjustItemTotal(i);
+
+			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+
+			adjustGrandTotal();
+
+			document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+
+			if (adjustGrandTotal() == 0) {
+				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
+			}
+		}
+
+		function adjustItemTotal(i) {
+			var newItemTotal = 0.0;
+			newItemTotal += (this.qty * this.unitPrice);
+
+			if (newItemTotal < 0) {
+				newItemTotal = 0;
+			}
+
+			return newItemTotal;
 		}
 
 //constructor for order
@@ -167,19 +156,30 @@
 				for (var i = 0; i < this.lineItems.length; i++) {
 					this.lineItems[i].showLineItemsinHTML(i);
 				}
-				this.lineItems.calculateTotalPrice();
 			}
 		}
 
 //showing the representation of the Order
 
 		window.onload = function() {
-			console.log(currentCustomer);
-			console.log(orderItems);
-
 			var myOrder = new Order(currentCustomer, orderItems);
 			myOrder.showOrder();
 		}
+
+/*
+		function calculateTotalPrice () {		
+		//calculates the total price based on qty * price
+			var totalPrice = 0.0;
+			for (var i = 0; i < orderJSON.lineItems.length; i++) {
+				var currentItem = orderJSON.lineItems[i];
+				totalPrice += (currentItem.qty * currentItem.unitPrice);
+			}
+			return totalPrice;
+			console.log(totalPrice);
+		}
+			
+		document.getElementById("invoiceTotal").innerHTML = totalPrice;
+*/
 
 /*
 //makes the buttons adjust the amount
