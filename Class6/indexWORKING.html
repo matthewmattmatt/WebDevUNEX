@@ -44,19 +44,6 @@
 			]
 		};
 
-//CUSTOMER CLASS
-
-		var currentCustomer = new Customer(orderJSON.customer.name, orderJSON.customer.location, orderJSON.customer.hasPaid);
-
-//ITEM CLASS
-
-		var orderItems = [];
-
-		for (var i = 0; i < orderJSON.lineItems.length; i++) {
-			var currentItem = orderJSON.lineItems[i];
-			orderItems[i] = new Item(currentItem.itemname, currentItem.type, currentItem.qty, currentItem.unitPrice, i);
-		}
-
 //constructor for customer info
 
 		function Customer( name, location, hasPaid ) {
@@ -71,6 +58,20 @@
 					'</div>'
 					;
 			}
+		}
+
+//output of Customer contructor
+
+		var currentCustomer = new Customer(orderJSON.customer.name, orderJSON.customer.location, orderJSON.customer.hasPaid);
+
+
+//output of Item constructor
+
+		var orderItems = [];
+
+		for (var i = 0; i < orderJSON.lineItems.length; i++) {
+			var currentItem = orderJSON.lineItems[i];
+			orderItems[i] = new Item(currentItem.itemname, currentItem.type, currentItem.qty, currentItem.unitPrice, i);
 		}
 
 //constructor for items in the order
