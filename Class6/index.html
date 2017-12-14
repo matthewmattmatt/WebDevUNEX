@@ -57,7 +57,68 @@
 			orderItems[i] = new Item(currentItem.itemname, currentItem.type, currentItem.qty, currentItem.unitPrice, i);
 		}
 
-//constructor for customer info
+//adds/subtracts when the button is clicked
+
+		function adjustAmount ( i, amount ) {
+			var newAmount = (orderItems[i].qty += amount);
+			if (newAmount == 0) {
+				$("#itemInvoice" + i).hide(1000)
+			}
+
+			document.getElementById('quantity' + i ).innerHTML = newAmount;
+
+			adjustItemTotal(i);
+
+			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
+
+			adjustGrandTotal();
+
+			document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
+
+			if (adjustGrandTotal() == 0) {
+				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
+			}
+		}
+
+//recalculate lineItem total
+
+		function adjustItemTotal ( i ) {
+			
+			var newItemTotal = 0.0;
+
+			newItemTotal += (orderItems[i].qty * orderItems[i].unitPrice);
+			
+			if (newItemTotal < 0) {
+				newItemTotal = 0;
+			}
+			
+			return newItemTotal;
+		}
+
+//recalculate grand total
+
+		function adjustGrandTotal ( i ) {
+			var newTotalPrice = 0.0;
+			for (var i = 0; i < orderItems.length; i++) {
+				newTotalPrice += (orderItems[i].qty * orderItems[i].unitPrice);
+			}
+
+			if (newTotalPrice < 0) {
+				newTotalPrice = 0;
+			}
+
+			return newTotalPrice;
+		}
+
+/*
+//changes the class of 0.00 items to invisible
+
+		function hideItem ( i ) {
+			document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
+		}
+*/
+
+//CUSTOMER CLASS
 
 		function Customer( name, location, hasPaid ) {
 			this.name = name;
@@ -73,7 +134,7 @@
 			}
 		}
 
-//constructor for items in the order
+//LINEITEM CLASS
 
 		function Item( itemname, type, qty, unitPrice, i) {
 			this.itemname = itemname;
@@ -112,65 +173,7 @@
 			}
 		}
 
-//adds/subtracts when the button is clicked
-
-		function adjustAmount ( i, amount ) {
-			var newAmount = (orderJSON.lineItems[i].qty += amount);
-			if (newAmount == 0) {
-				hideItem(i);
-			}
-
-			document.getElementById('quantity' + i ).innerHTML = newAmount;
-
-			adjustItemTotal(i);
-
-			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
-
-			adjustGrandTotal();
-
-			document.getElementById("invoiceTotal").innerHTML = adjustGrandTotal().toFixed(2);
-
-			if (adjustGrandTotal() == 0) {
-				document.getElementById("orderInvoice").innerHTML = "Your cart is empty";	
-			}
-		}
-
-//recalculate lineItem total
-
-		function adjustItemTotal ( i ) {
-			
-			var newItemTotal = 0.0;
-
-			newItemTotal += (orderJSON.lineItems[i].qty * orderJSON.lineItems[i].unitPrice);
-			
-			if (newItemTotal < 0) {
-				newItemTotal = 0;
-			}
-			
-			return newItemTotal;
-		}
-
-//recalculate grand total
-
-		function adjustGrandTotal ( i ) {
-			var newTotalPrice = 0.0;
-			for (var i = 0; i < orderJSON.lineItems.length; i++) {
-				newTotalPrice += (orderJSON.lineItems[i].qty * orderJSON.lineItems[i].unitPrice);
-			}
-
-			if (newTotalPrice < 0) {
-				newTotalPrice = 0;
-			}
-			return newTotalPrice;
-		}
-
-//changes the class of 0.00 items to invisible
-
-		function hideItem ( i ) {
-			document.getElementById("itemInvoice" + i).className = ("zeroQuantity");	
-		}
-
-//constructor for order
+//ORDER CLASS
 
 		function Order ( customer, lineItems, i ) {
 			this.customer = customer;
