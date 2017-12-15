@@ -65,10 +65,12 @@
 				$("#itemInvoice" + i).hide(1000)
 			}
 
-			document.getElementById('quantity' + i ).innerHTML = newAmount;
+			$("#finalPrice" + i).html(newAmount);
+			//document.getElementById('quantity' + i ).innerHTML = newAmount;
 
 			adjustItemTotal(i);
 
+			//$("#finalPrice" + i).val(adjustItemTotal(i).toFixed(2))
 			document.getElementById('finalPrice' + i).innerHTML = adjustItemTotal(i).toFixed(2);
 
 			adjustGrandTotal();
