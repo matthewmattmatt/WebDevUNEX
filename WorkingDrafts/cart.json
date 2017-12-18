@@ -1,0 +1,34 @@
+{
+	 "customer": {
+	  	"name": "Matt",
+	  	"location": "California",
+	  	"hasPaid": "Yes"
+	  },
+
+	 "lineItems": [
+		{
+			"itemname":"bananas",
+			"type":"fruit",
+			"qty": 1,
+			"unitPrice":3.50
+		},
+		{
+			"itemname":"apples",
+			"type":"fruit",
+			"qty": 1,
+			"unitPrice":1.00
+		},
+		{
+			"itemname":"pumpkins ",
+			"type":"vegetable",
+			"qty": 1,
+			"unitPrice":5.00
+		},
+		{
+			"itemname":"passionfruit",
+			"type":"fruit",
+			"qty": 1,
+			"unitPrice":1.50
+		}
+	]
+}
