@@ -65,7 +65,7 @@ function Order ( customer, lineItems, i ) {
 			var currentItem = this.lineItems[i];
 			totalPrice += (currentItem.qty * currentItem.unitPrice);
 		}
-		$("invoiceTotal").html(totalPrice.toFixed(2));
+		$("#invoiceTotal").html(totalPrice.toFixed(2));
 	}
 }
 
@@ -75,7 +75,7 @@ function Customer( name, location, hasPaid ) {
 	this.name = name;
 	this.location = location;
 	this.hasPaid = hasPaid;
-	this.showCustomerinHTML = function(id) {
+	this.showCustomerinHTML = function( id ) {
 		document.getElementById("customerInfo").innerHTML =
 			'<div id=#customerDiv>' +
 			'Customer Name: ' + this.name + '<br/>' +
@@ -87,7 +87,7 @@ function Customer( name, location, hasPaid ) {
 
 //LINEITEM CLASS
 
-function Item( itemname, type, qty, unitPrice, i) {
+function Item( itemname, type, qty, unitPrice, i ) {
 	this.itemname = itemname;
 	this.type = type;
 	this.qty = qty;
